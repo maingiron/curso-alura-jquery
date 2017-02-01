@@ -3,25 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Alura Typer</title>
+    <link rel="stylesheet" type="text/css" href="css/libs/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
 <body>
 
-    <h1>Alura Typer</h1>
-    <p class="frase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut massa tempor, dapibus mauris a, rhoncus lorem. Nulla tempus nibh blandit orci sollicitudin semper. Nunc convallis venenatis arcu, sit amet lacinia enim blandit ac. Nunc accumsan tellus eget risus molestie luctus. Quisque ultrices finibus elit at ornare. Ut leo risus, aliquam nec lacinia vitae, consequat nec nisi. Quisque vel rutrum lectus. Maecenas sed tellus leo. Aenean sollicitudin justo vitae orci pellentesque venenatis. Donec faucibus diam a malesuada dignissim. Donec tempus condimentum augue, in dapibus arcu aliquet eu.</p>
+    <div class="container">
+        <h1 class="center">Alura Typer</h1>
+        <p class="frase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut massa tempor, dapibus mauris a, rhoncus lorem. Nulla tempus nibh blandit orci sollicitudin semper. Nunc convallis venenatis arcu, sit amet lacinia enim blandit ac. Nunc accumsan tellus eget risus molestie luctus. Quisque ultrices finibus elit at ornare. Ut leo risus, aliquam nec lacinia vitae, consequat nec nisi. Quisque vel rutrum lectus. Maecenas sed tellus leo. Aenean sollicitudin justo vitae orci pellentesque venenatis. Donec faucibus diam a malesuada dignissim. Donec tempus condimentum augue, in dapibus arcu aliquet eu.</p>
 
-    <ul class="informacoes">
-    	<li><span id="tamanho-frase"></span> palavras</li>
-    	<li><span id="tempo-digitacao">2</span> segundos</li>
-    </ul>
+        <ul class="informacoes center">
+        	<li>
+                <i class="small material-icons icones">description</i>
+                <span id="tamanho-frase"></span> palavras
+            </li>
+        	<li>
+                <i class="small material-icons icones">query_builder</i>
+                <span id="tempo-digitacao">20</span> segundos
+            </li>
+        </ul>
 
-    <textarea class="campo-digitacao" rows="8" cols="40"></textarea>
+        <textarea class="campo-digitacao" rows="8" cols="40"></textarea>
 
-    <button id="botao-reiniciar">Reiniciar jogo</button>
+        <div class="botoes">
+            <a id="botao-reiniciar" class="btn-floating btn-large waves-effect waves-light red">
+                <i class="material-icons">restore</i>
+            </a>
+        </div>
 
-    <ul>
-        <li><span id="contador-caracteres">0</span> caracteres</li>
-        <li><span id="contador-palavras">0</span> palavras</li>
-    </ul>
+        <ul class="center">
+            <li>
+
+                <span id="contador-caracteres">0</span> caracteres
+            </li>
+            <li>
+
+                <span id="contador-palavras">0</span> palavras
+            </li>
+        </ul>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>

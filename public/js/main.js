@@ -38,6 +38,7 @@ $(function (){
 	atualizaTamanhoFrase();
 	inicializaContadores();
 	inicializaCronometro();
+	inicializaMarcadores();
 	$("#botao-reiniciar").click(reiniciaJogo);
 
 });
@@ -90,11 +91,46 @@ function inicializaCronometro() {
 				campo.attr("disabled", true);
 				clearInterval(cronometroID);
 				$("#botao-reiniciar").attr("disabled", false);
+				// Funciona como a função addClass e removeClass fazendo a alternância
+				campo.toggleClass("campo-desativado");
 			}
 			
 
 		}, 1000);
 
+	});
+
+}
+
+
+function inicializaMarcadores() {
+
+	var frase = $(".frase").text();
+
+	campo.on("input", function() {
+
+		var digitado = campo.val();
+		var comparavel = frase.substr(0, digitado.length);
+
+
+		// var correto = (digitado == comparavel);
+		// A função startsWith é do ECMA Script 6 e faz a mesma funcionalidade acima
+		var correto = frase.startsWith(digitado);
+
+
+		// toggleClass pode receber um segundo parâmetro que define se adicionar ou remover
+		campo.toggleClass("campo-correto", correto);
+		campo.toggleClass("campo-errado", !correto);
+
+		/* A função toggleClass acima faz exatamente a mesma funcionalidade do if abaixo 
+		if(digitado == comparavel) {
+			campo.addClass("campo-correto");
+			campo.removeClass("campo-errado");
+		} else {
+			campo.addClass("campo-errado");
+			campo.removeClass("campo-correto");
+		}
+		*/
 	});
 
 }
@@ -109,5 +145,9 @@ function reiniciaJogo() {
 	$("#tempo-digitacao").text(tempoInicial);
 
 	inicializaCronometro();
+
+	campo.toggleClass("campo-desativado");
+	campo.removeClass("campo-correto");
+	campo.removeClass("campo-errado");
 
 }

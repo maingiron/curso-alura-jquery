@@ -1,0 +1,24 @@
+.campo-digitacao {
+	height: 130px;
+	outline: 0;
+	border: 2px solid #000;
+	font-size: 20px;
+	resize: none;
+}
+.campo-desativado {
+	background-color: #ccc;
+}
+.campo-correto {
+	border: 2px solid #5cb85c;
+}
+.campo-errado {
+	border: 2px solid #c9302c;
+}
+
+.frase {
+	font-size: 20px;
+}
+
+.icones {
+	vertical-align: middle;
+}

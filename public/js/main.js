@@ -44,8 +44,6 @@ $(function (){
 });
 
 
-
-
 function atualizaTamanhoFrase() {
 
 	var frase = $(".frase").text();
@@ -86,19 +84,28 @@ function inicializaCronometro() {
 			$("#tempo-digitacao").text(tempoRestante);
 
 			if(tempoRestante < 1) {
-				// .attr é uma função do jQuery que pode pegar, incluir ou modificar um valor de atributo
-				// disabled não tem nenhum valor, por isso, precisar passar o valor true para a função
-				campo.attr("disabled", true);
 				clearInterval(cronometroID);
-				$("#botao-reiniciar").attr("disabled", false);
-				// Funciona como a função addClass e removeClass fazendo a alternância
-				campo.toggleClass("campo-desativado");
+				finalizaJogo();
 			}
 			
 
 		}, 1000);
 
 	});
+
+}
+
+
+function finalizaJogo() {
+
+	// .attr é uma função do jQuery que pode pegar, incluir ou modificar um valor de atributo
+	// disabled não tem nenhum valor, por isso, precisar passar o valor true para a função
+	campo.attr("disabled", true);
+	
+	$("#botao-reiniciar").attr("disabled", false);
+	// Funciona como a função addClass e removeClass fazendo a alternância
+	campo.toggleClass("campo-desativado");
+	inserePlacar();
 
 }
 
@@ -134,6 +141,39 @@ function inicializaMarcadores() {
 	});
 
 }
+
+
+function inserePlacar() {
+
+	// .find realiza uma busca no filho do elemento
+	// .find recebo como parâmetro seletores CSS
+	var corpoTabela = $(".placar").find("tbody");
+	var usuario = "Raphael";
+	var numPalavras = $("#contador-palavras").text();
+	var botaoRemover = "<a href=''><i class='small material-icons'>delete</i></a>";
+
+	var linha = "<tr>" +
+					"<td>" + usuario + "</td>" +
+					"<td>" + numPalavras + "</td>" +
+					"<td>" + botaoRemover + "</td>" +
+				"</tr>";
+
+	// .append adiciona a string/HTML no ultimo filho do elemento selecionado
+	// prepend adiciona a string/HTML no primeiro filho do elemento selecionado
+	corpoTabela.prepend(linha);
+
+}
+
+
+$(".botao-remover").click(function (event) {
+
+	// .preventDefault evita o comportamento padrão do elemento selecionado, neste caso, a tag a, que tem o comportamento de redirecionar para outro lugar
+	event.preventDefault();
+
+	// .parent pega o pai do this
+	$(this).parent().parent().remove();
+	
+});
 
 
 function reiniciaJogo() {

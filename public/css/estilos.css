@@ -1,3 +1,7 @@
+body {
+	overflow: scroll;
+}
+
 .campo-digitacao {
 	height: 130px;
 	outline: 0;
@@ -21,4 +25,8 @@
 
 .icones {
 	vertical-align: middle;
+}
+
+.placar {
+	display: none;
 }

@@ -44,6 +44,14 @@ $(function (){
 });
 
 
+function atualizaTempoInicial(tempo) {
+
+	tempoInicial = tempo;
+	$("#tempo-digitacao").text(tempo);
+	
+}
+
+
 function atualizaTamanhoFrase() {
 
 	var frase = $(".frase").text();
@@ -65,15 +73,17 @@ function inicializaContadores() {
 
 		var qtdCaracteres = conteudo.length;
 		$("#contador-caracteres").text(qtdCaracteres);
+
 	});
 
 }
 
 
 function inicializaCronometro() {
-
-	var tempoRestante = $("#tempo-digitacao").text();
+	
 	campo.one("focus", function() {
+
+		var tempoRestante = $("#tempo-digitacao").text();
 
 		$("#botao-reiniciar").attr("disabled", true);
 
@@ -87,7 +97,6 @@ function inicializaCronometro() {
 				clearInterval(cronometroID);
 				finalizaJogo();
 			}
-			
 
 		}, 1000);
 
@@ -112,18 +121,15 @@ function finalizaJogo() {
 
 function inicializaMarcadores() {
 
-	var frase = $(".frase").text();
-
 	campo.on("input", function() {
 
+		var frase = $(".frase").text();
 		var digitado = campo.val();
 		var comparavel = frase.substr(0, digitado.length);
-
 
 		// var correto = (digitado == comparavel);
 		// A função startsWith é do ECMA Script 6 e faz a mesma funcionalidade acima
 		var correto = frase.startsWith(digitado);
-
 
 		// toggleClass pode receber um segundo parâmetro que define se adicionar ou remover
 		campo.toggleClass("campo-correto", correto);

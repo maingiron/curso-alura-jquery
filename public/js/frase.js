@@ -3,6 +3,7 @@
  *
  *
  * $.get("url", função)		-> Função para fazer a requisição AJAX
+ *   fail 					-> Recebe uma função anônima com o código que é executado quando um erro acontece
  * data						-> Argumento que retorna da própria requisição -- Obs.: Pode ser qualquer nome
  *
  * Math.random() 			-> Retorna um número aleatório entre 0 a 1
@@ -16,8 +17,25 @@ $("#botao-frase").click(fraseAleatoria);
 
 function fraseAleatoria() {
 
+	$("#spinner").toggle();
+
 	// Função para fazer a requisição AJAX
-	$.get("http://localhost:3000/frases", trocaFraseAleatoria);
+	$.get("http://localhost:3000/frases", trocaFraseAleatoria)
+	 // fail recebe uma função anônima com o código que é executado quando um erro acontece
+	 .fail(function() {
+
+	 	$("#erro").toggle();
+
+	 	setTimeout(function() {
+			$("#erro").toggle();
+	 	}, 2000);
+	 	
+	 })
+	 // always sempre invocar um código (independente se for erro ou sucesso) após da requisição AJAX
+	 .always(function() {
+
+	 	$("#spinner").toggle();
+	 });
 
 }
 

@@ -13,6 +13,7 @@
 
 
 $("#botao-frase").click(fraseAleatoria);
+$("#botao-frase-id").click(buscaFrase);
 
 
 function fraseAleatoria() {
@@ -52,5 +53,41 @@ function trocaFraseAleatoria(data) {
 
 	atualizaTamanhoFrase();
 	atualizaTempoInicial(data[numeroAleatorio].tempo);
+
+}
+
+
+function buscaFrase() {
+
+	$("#spinner").toggle();
+
+	var fraseId = $("#frase-id").val();
+	var dados = { id: fraseId };
+
+	// O segundo argumento é o que será buscado no servidor. Precisa ser em forma de objeto
+	$.get("http://localhost:3000/frases", dados, trocaFrase)
+	 .fail(function() {
+
+	 	$("#erro").toggle();
+
+	 	setTimeout(function() {
+			$("#erro").toggle();
+	 	}, 2000);
+
+	 })
+	 .always(function() {
+
+	 	$("#spinner").toggle();
+	 });
+
+}
+
+
+function trocaFrase(data) {
+
+	var frase = $(".frase");
+	frase.text(data.texto);
+	atualizaTamanhoFrase();
+	atualizaTempoInicial(data.tempo);
 
 }

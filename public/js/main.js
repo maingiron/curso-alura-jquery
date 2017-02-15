@@ -42,6 +42,17 @@ $(function (){
 	$("#botao-reiniciar").click(reiniciaJogo);
 	atualizaPlacar()
 
+	// plugin do jQuery
+	$("#usuarios").selectize({
+		create: true,
+	   	sortField: 'text'
+	});
+
+	$('.tooltip').tooltipster({
+		trigger: 'custom',
+		theme: 'tooltipster-shadow'
+	});
+
 });
 
 

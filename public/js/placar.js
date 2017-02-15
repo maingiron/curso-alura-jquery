@@ -41,7 +41,7 @@ function inserePlacar() {
 	// .find realiza uma busca no filho do elemento
 	// .find recebo como parâmetro seletores CSS
 	var corpoTabela = $(".placar").find("tbody");
-	var usuario = "Usuário Padrão";
+	var usuario = $("#usuarios").val();
 	var numPalavras = $("#contador-palavras").text();
 
 	var linha = novaLinha(usuario, numPalavras);
@@ -154,7 +154,22 @@ function sincronizaPlacar() {
 	}
 
 	// envia os dados para o servidor
-	$.post("http://localhost:3000/placar", dados, function() { });
+	$.post("http://localhost:3000/placar", dados, function() { 
+
+		$(".tooltip").tooltipster("open").tooltipster("content", "Sucesso ao sincronizar");
+	})
+	.fail(function() {
+
+		$(".tooltip").tooltipster("open").tooltipster("content", "Falha ao sincronizar");
+	})
+	.always(function() {
+
+		setTimeout(function() {
+
+			$(".tooltip").tooltipster("close");
+		}, 1400);
+		
+	})
 
 }
 
